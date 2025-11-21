@@ -1,0 +1,20 @@
+@import "tailwindcss";
+/* Typing-effect styles */
+.typing-text {
+  display: inline-block;
+  white-space: pre-wrap; /* preserve line breaks */
+  border-right: 2px solid rgba(255,255,255,0.75); /* cursor effect */
+  overflow: hidden;
+  animation:
+    typing 1.5s steps(var(--chars)) forwards,
+    blink 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}

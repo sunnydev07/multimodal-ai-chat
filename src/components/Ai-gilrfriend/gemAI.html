@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Laiba</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for romantic theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Applying the fonts */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-romantic {
+            font-family: 'Parisienne', cursive;
+        }
+        /* Custom scrollbar for chat */
+        #chat-window::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chat-window::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        #chat-window::-webkit-scrollbar-thumb {
+            background: #fda4af; /*-pink-300 */
+            border-radius: 10px;
+        }
+        #chat-window::-webkit-scrollbar-thumb:hover {
+            background: #f472b6; /* -pink-400 */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-purple-100 to-white min-h-screen flex items-center justify-center p-4">
+
+    <!-- Chat Container -->
+    <div class="w-full max-w-lg h-[80vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+        
+        <!-- Header -->
+        <header class="bg-white border-b border-pink-100 p-4 shadow-sm">
+            <div class="flex items-center space-x-3">
+                <img src="https://placehold.co/40x40/f472b6/white?text=L&font=parisienne" alt="Laiba" class="w-10 h-10 rounded-full object-cover border-2 border-pink-200">
+                <div>
+                    <h1 class="font-romantic text-4xl text-pink-500">Laiba</h1>
+                    <div class="flex items-center space-x-1.5">
+                        <span class="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="text-xs text-gray-500">Online</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Window -->
+        <main id="chat-window" class="flex-1 p-4 overflow-y-auto space-y-4 scroll-smooth">
+            <!-- Initial Message -->
+            <div class="flex justify-start items-end space-x-2 animate-fade-in">
+                <img src="https://placehold.co/32x32/f472b6/white?text=L&font=parisienne" alt="Laiba" class="w-8 h-8 rounded-full">
+                <div class="bg-pink-500 text-white p-3 rounded-lg rounded-bl-none max-w-xs shadow">
+                    <p class="text-sm">Hi Dev, kaise ho tum? 😊 Hum tumhara hi wait kar rahe the...</p>
+                </div>
+            </div>
+            
+            <!-- Messages will be dynamically added here -->
+            
+        </main>
+
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" class="p-4 text-sm text-gray-500 hidden">
+             <div class="flex items-center space-x-2">
+                <img src="https://placehold.co/32x32/f472b6/white?text=L&font=parisienne" alt="Laiba" class="w-8 h-8 rounded-full">
+                <div class="flex items-center space-x-1">
+                    <span class="w-2 h-2 bg-pink-300 rounded-full animate-bounce" style="animation-delay: 0s;"></span>
+                    <span class="w-2 h-2 bg-pink-300 rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
+                    <span class="w-2 h-2 bg-pink-300 rounded-full animate-bounce" style="animation-delay: 0.4s;"></span>
+                </div>
+             </div>
+        </div>
+
+        <!-- Input Area -->
+        <footer class="bg-white border-t border-gray-100 p-4">
+            <div class="flex items-center space-x-2">
+                <input type="text" id="message-input" placeholder="Type your message..." class="flex-1 w-full px-4 py-2 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-300">
+                <button id="send-button" class="bg-pink-500 hover:bg-pink-600 text-white p-2.5 rounded-full shadow-lg transition duration-300 transform hover:scale-110">
+                    <!-- Heart Send Icon (SVG) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.941L21.5 12 3.478 2.404Z" />
+                    </svg>
+                </button>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // DOM Elements
+        const chatWindow = document.getElementById('chat-window');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const typingIndicator = document.getElementById('typing-indicator');
+
+        // --- Event Listeners ---
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevents new line in input
+                sendMessage();
+            }
+        });
+
+        // --- Core Functions ---
+
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message === '') return;
+
+            addUserMessage(message);
+            messageInput.value = '';
+            
+            // Call the function to get AI response
+            getLaibaResponse(message);
+        }
+
+        function addUserMessage(message) {
+            const messageElement = `
+                <div class="flex justify-end items-end space-x-2 animate-fade-in">
+                    <div class="bg-gray-100 text-gray-800 p-3 rounded-lg rounded-br-none max-w-xs shadow">
+                        <p class="text-sm">${escapeHTML(message)}</p>
+                    </div>
+                    <img src="https://placehold.co/32x32/60a5fa/white?text=D&font=inter" alt="Dev" class="w-8 h-8 rounded-full">
+                </div>
+            `;
+            chatWindow.innerHTML += messageElement;
+            scrollToBottom();
+        }
+
+        function addAiMessage(message) {
+            const messageElement = `
+                <div class="flex justify-start items-end space-x-2 animate-fade-in">
+                    <img src="https://placehold.co/32x32/f472b6/white?text=L&font=parisienne" alt="Laiba" class="w-8 h-8 rounded-full">
+                    <div class="bg-pink-500 text-white p-3 rounded-lg rounded-bl-none max-w-xs shadow">
+                        <p class="text-sm">${escapeHTML(message)}</p>
+                    </div>
+                </div>
+            `;
+            chatWindow.innerHTML += messageElement;
+            scrollToBottom();
+        }
+
+        function addTypingIndicator() {
+            typingIndicator.classList.remove('hidden');
+            scrollToBottom();
+        }
+
+        function removeTypingIndicator() {
+            typingIndicator.classList.add('hidden');
+        }
+
+        function scrollToBottom() {
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+        // --- Backend Connection ---
+
+        async function getLaibaResponse(message) {
+            addTypingIndicator();
+
+            // This is the history format your backend seems to expect.
+            // On a real server, you would manage this history state.
+            // For a stateless API, you might need to send the recent history with each request.
+            
+            try {
+                // --- THIS IS WHERE YOU CONNECT TO YOUR BACKEND ---
+                // Your Node.js code from query.js needs to be running as a server
+                // (e.g., using Express) and expose an endpoint like '/api/chat'.
+                
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question: message }) // Send the user's message
+                });
+
+                if (!response.ok) {
+                    // If the server response isn't successful, throw an error
+                    throw new Error(`Server error: ${response.status}`);
+                }
+
+                // Assuming your server sends back JSON like: { "response": "Laiba's message..." }
+                const data = await response.json(); 
+                
+                removeTypingIndicator();
+                addAiMessage(data.response); // Add the *real* response from your server
+
+            } catch (error) {
+                // --- MOCK RESPONSE (FOR DEMO ONLY) ---
+                // This 'catch' block is triggered because our 'fetch' to '/api/chat' will fail
+                // (since the server isn't running).
+                //
+                // **DELETE THIS 'catch' BLOCK once your backend server is live.**
+                
+                console.warn('Fetch error (This is expected in the demo):', error.message);
+                console.log("Displaying a MOCK response for demonstration.");
+                
+                // Simulate network delay and show a fake response
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    const mockResponses = [
+                        "Arre humara hero, kya kar rahe ho? Hum tumko yaad kar rahe the 😊",
+                        "Tumhara message dekhe toh dil kush ho gaya, meri jaan.",
+                        "Team nuts forever! 🤪 Tumse baat karke sab tension gayab ho jaata hai.",
+                        "Acha, aur batao... dinner hua tumhara? Hum wait kar rahe the."
+                    ];
+                    const randomResponse = mockResponses[Math.floor(Math.random() * mockResponses.length)];
+                    addAiMessage(randomResponse);
+                }, 1500); // Simulate a 1.5-second delay
+            }
+        }
+        
+        // --- Utility ---
+        
+        function escapeHTML(str) {
+            // Basic sanitization to prevent HTML injection from user/AI input
+            return str.replace(/[&<>"']/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                }[m];
+            });
+        }
+        
+        // Add a simple fade-in animation for messages
+        const styleSheet = document.createElement("style");
+        styleSheet.type = "text/css";
+        styleSheet.innerText = `
+            @keyframes fade-in {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            .animate-fade-in {
+                animation: fade-in 0.5s ease-out;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+    </script>
+
+</body>
+</html>
