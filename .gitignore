@@ -42,3 +42,6 @@ coverage
 # Misc
 *.pem
 .cache
+
+# Local Netlify folder
+.netlify

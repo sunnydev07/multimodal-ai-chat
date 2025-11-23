@@ -655,7 +655,7 @@ function App() {
 
                   {/* Poornima Oracle Card */}
                   <a 
-                    href="src\components\poornima.html" 
+                    href="https://sunnydev07.github.io/Poornima-Oracle/" 
                     className="group bg-zinc-900/50 border border-white/5 rounded-2xl p-6 flex flex-col items-center justify-center transition-all duration-500 hover:border-white/80 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:bg-black"
                   >
                     <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-white/10 mb-4 group-hover:border-cyan-400 transition-all duration-300 shadow-lg">
@@ -674,9 +674,9 @@ function App() {
                     href="https://019a6f62-d3a1-7947-add2-fd7c935a378b.arena.site/node" 
                     className="group bg-zinc-900/50 border border-white/5 rounded-2xl p-6 flex flex-col items-center justify-center transition-all duration-500 hover:border-white/80 hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] hover:bg-black cursor-not-allowed "
                   >
-                    <div className="w-full aspect-video rounded-xl overflow-hidden border border-white/10 mb-4 grayscale group-hover:grayscale-0 transition-all duration-500 relative">
+                    <div className="w-full aspect-video rounded-xl overflow-hidden border border-white/10 mb-4 grayscale group-hover:grayscale-0 transition-all duration-900 relative">
                       <img 
-                        src="src\assets\chainsaw-man-csm (1).gif" 
+                        src="https://media1.tenor.com/m/jJoFEYBZGqkAAAAd/chainsaw-man-csm.gif" 
                         alt="Makima"
                         className="w-full h-full object-cover"
                       />
