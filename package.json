@@ -1,5 +1,5 @@
 {
-  "name": "dev.ai",
+  "name": "multimodal-ai-chat",
   "description": "Multimodal AI chat frontend built with React and Vite.",
   "private": true,
   "version": "1.0.0",
