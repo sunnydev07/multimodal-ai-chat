@@ -1,76 +1,52 @@
-# Dev.ai - Multi-Model AI Chat Interface
+# 🤖 Multimodal AI Chat — Multi-Model AI Interface
 
-A modern, responsive AI chat interface that supports multiple AI models with beautiful UI effects and smooth animations.
+[![React](https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7.0-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0-38bdf8?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+
+**Multimodal AI Chat** is a fast, responsive, and modular AI chat application supporting multi-model AI routing, visual particle click-spark effects, markdown rendering, and local chat history.
+
+---
 
 ## ✨ Features
 
-- 🤖 **Multi-Model Support** - Switch between different AI models seamlessly
-- 💬 **Chat History** - Persistent chat history with localStorage
-- 🎨 **Beautiful UI** - Modern design with click spark effects and smooth animations
-- 📱 **Responsive Design** - Works perfectly on desktop, tablet, and mobile
-- 🔒 **Error Handling** - Robust error boundaries and error handling
-- ⚡ **Fast Performance** - Optimized builds with code splitting
+- 🔀 **Multi-Model AI Switching**: Dynamically switch between multiple LLM models without losing conversation context.
+- 💾 **Persistent Local Storage**: Chat history and user preferences automatically saved in browser local storage.
+- ⚡ **Interactive UI Effects**: Custom click-spark animations, code syntax highlighting, and smooth layout transitions.
+- 📱 **Mobile & Responsive First**: Adapted for mobile, tablet, and desktop viewports.
+- 🛡️ **Error Handling**: Graceful error boundary fallback and API error management.
 
-## 🚀 Getting Started
+---
 
-### Prerequisites
+## 🛠️ Tech Stack
 
-- Node.js 18+ and npm/yarn/pnpm
+- **Frontend**: React 19, TypeScript / JSX
+- **Build Tool**: Vite 7
+- **Styling**: Tailwind CSS 4, Lucide Icons
+- **AI Core**: Puter.js AI API & Custom Web LLM Integrations
 
-### Installation
+---
 
-1. Clone the repository
+## 🚀 Quick Start
+
+### 1. Installation
+
 ```bash
-git clone <your-repo-url>
-cd "Dev.ai_With Effects"
-```
-
-2. Install dependencies
-```bash
+git clone https://github.com/sunnydev07/multimodal-ai-chat.git
+cd multimodal-ai-chat
 npm install
 ```
 
-3. Start development server
+### 2. Run Locally
+
 ```bash
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`
-
-
-
-### API Configuration
-
-The app uses Puter AI by default. Make sure the Puter script is loaded in `index.html`:
-```html
-<script src="https://js.puter.com/v2/"></script>
-```
-
-## 📝 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint errors automatically
-
-## 🛠️ Tech Stack
-
-- **React 19** - UI framework
-- **Vite 7** - Build tool and dev server
-- **Tailwind CSS 4** - Styling
-- **Lucide React** - Icons
-- **Puter AI** - AI backend
-
-## 📄 License
-
-© 2025 Sunnydev. All rights reserved.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-**Made with ❤️ by Sunnydev**
-# Maintenance Update: 2026-07-03
+## 📄 License
+
+Distributed under the MIT License. Created by [Sunny Kumar Dev](https://github.com/sunnydev07).
